@@ -8,8 +8,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-   
     // MARK: - Properties
+
+    // ViewModel'den veri çeken property
+    let viewModel = MessageViewModel()
 
     // Motivational message label
     let messageLabel: UILabel = {
@@ -23,20 +25,21 @@ class ViewController: UIViewController {
         return label
     }()
 
-
-
     // MARK: Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupUI()
-//        fetchDailyMotivationMessage()
+
+        // Kullanıcının dil tercihine göre JSON verisini ViewModel'e yükle
+        let currentLanguage = Locale.current.language.languageCode?.identifier ?? "en"
+        viewModel.loadMessages(for: currentLanguage)
+
+        // Güne göre mesajı ekranda göster
+        messageLabel.text = viewModel.getMessageForToday()
     }
 
     // MARK: - Functions
-
-
 
     // UI'yi ayarlayan fonksiyon
     func setupUI() {
@@ -53,26 +56,21 @@ class ViewController: UIViewController {
             messageLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
         ])
     }
-    
-    
-    func setGradientBackground() {
 
+    func setGradientBackground() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
 
         let colors = BackgroundColors.randomTwoColors()
         let color1 = colors.color1
         let color2 = colors.color2
-        
+
         gradientLayer.colors = [color1.cgColor, UIColor.white.withAlphaComponent(1).cgColor,
-                                color2.cgColor
-        ]
-        
+                                color2.cgColor]
+
         gradientLayer.startPoint = CGPoint(x: 1, y: 0.0)
         gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
 
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
-
 }
-
