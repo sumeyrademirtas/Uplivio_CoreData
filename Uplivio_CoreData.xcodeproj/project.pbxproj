@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8140DC932CC8F14F0014DB7E /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 8140DC922CC8F14F0014DB7E /* Lottie */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		8140DC472CC8EF500014DB7E /* Uplivio_CoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Uplivio_CoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8140DC932CC8F14F0014DB7E /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 			);
 			name = Uplivio_CoreData;
 			packageProductDependencies = (
+				8140DC922CC8F14F0014DB7E /* Lottie */,
 			);
 			productName = Uplivio_CoreData;
 			productReference = 8140DC472CC8EF500014DB7E /* Uplivio_CoreData.app */;
@@ -107,6 +113,9 @@
 			);
 			mainGroup = 8140DC3E2CC8EF500014DB7E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8140DC912CC8F14F0014DB7E /* XCRemoteSwiftPackageReference "lottie-spm" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8140DC482CC8EF500014DB7E /* Products */;
 			projectDirPath = "";
@@ -335,6 +344,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8140DC912CC8F14F0014DB7E /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8140DC922CC8F14F0014DB7E /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8140DC912CC8F14F0014DB7E /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8140DC3F2CC8EF500014DB7E /* Project object */;
 }
