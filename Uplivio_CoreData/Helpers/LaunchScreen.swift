@@ -20,7 +20,7 @@ class LaunchScreenViewController: UIViewController {
     let messageLabel: UILabel = {
         let label = UILabel()
         label.text = "Start each day with inspiration"
-        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 28, weight: .bold)
         label.numberOfLines = 0
         label.textColor = .white
         label.textAlignment = .center
@@ -39,7 +39,7 @@ class LaunchScreenViewController: UIViewController {
         super.viewDidLoad()
 
         setupBackgroundAnimation()
-
+        setMessageBasedOnLanguage()
         setupUI()
 
         startLottieAnimationandGoToMainScreen()
@@ -67,6 +67,16 @@ class LaunchScreenViewController: UIViewController {
             messageLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             messageLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ])
+    }
+    
+    func setMessageBasedOnLanguage() {
+        let preferredLanguage = Locale.preferredLanguages.first ?? "en"
+        
+        if preferredLanguage.contains("tr") {
+            messageLabel.text = "Her güne ilhamla başla"
+        } else {
+            messageLabel.text = "Start each day with inspiration"
+        }
     }
 
     func startLottieAnimationandGoToMainScreen() {

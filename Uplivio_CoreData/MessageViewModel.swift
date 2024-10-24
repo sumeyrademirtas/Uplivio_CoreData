@@ -28,40 +28,42 @@ class MessageViewModel {
         }
     }
 
-    // Güne göre mesajı al
+    // getMessageForToday
     func getMessageForToday() -> String {
         guard let messageData = messageData else { return "No message available" }
         let dayOfYear = Calendar.current.ordinality(of: .day, in: .year, for: Date()) ?? 1
 
-        // Mesaj grubunu sırayla belirleme
         let messageType = getMessageTypeForDay()
 
-        // Mesajın indeksini belirleme (1 ile 91 arasında)
         let messageIndex = (dayOfYear - 1) % 91
 
         // Mesaj türüne göre mesajı seçme
         switch messageType {
         case "motivationalMessages":
-            return messageData.motivationalMessages[messageIndex]
+//            return messageData.motivationalMessages[messageIndex]
+            return messageData.motivationalMessages[dayOfYear % messageData.motivationalMessages.count]
         case "inspiringQuotes":
-            return messageData.inspiringQuotes[messageIndex]
+//            return messageData.inspiringQuotes[messageIndex]
+            return messageData.inspiringQuotes[dayOfYear % messageData.inspiringQuotes.count]
         case "positiveThoughts":
-            return messageData.positiveThoughts[messageIndex]
+//            return messageData.positiveThoughts[messageIndex]
+            return messageData.positiveThoughts[dayOfYear % messageData.positiveThoughts.count]
         case "mindfulnessMessages":
-            return messageData.mindfulnessMessages[messageIndex]
+//            return messageData.mindfulnessMessages[messageIndex]
+            return messageData.mindfulnessMessages[dayOfYear % messageData.mindfulnessMessages.count]
         default:
             return "No message available"
         }
     }
 
-    // JSON dosyasını yükleyen fonksiyon
+    // upload JSON File
     func loadMessages(for language: String) {
         let fileName = (language == "tr") ? "messages_tr" : "messages_en"
         if let path = Bundle.main.path(forResource: fileName, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path))
                 let messageResponse = try JSONDecoder().decode(MessageResponse.self, from: data)
-                self.messageData = messageResponse.messages
+                messageData = messageResponse.messages
             } catch {
                 print("Error loading JSON: \(error)")
             }
