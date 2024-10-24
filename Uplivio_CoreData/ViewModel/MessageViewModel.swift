@@ -35,7 +35,7 @@ class MessageViewModel {
 
         let messageType = getMessageTypeForDay()
 
-        let messageIndex = (dayOfYear - 1) % 91
+        //let messageIndex = (dayOfYear - 1) % 91
 
         // Mesaj türüne göre mesajı seçme
         switch messageType {
