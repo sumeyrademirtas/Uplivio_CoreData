@@ -12,7 +12,7 @@ import SwiftUI
 struct UplivioWidgetBundle: WidgetBundle {
     var body: some Widget {
         UplivioWidget()
-        UplivioWidgetControl()
-        UplivioWidgetLiveActivity()
+//        UplivioWidgetControl()
+//        UplivioWidgetLiveActivity()
     }
 }

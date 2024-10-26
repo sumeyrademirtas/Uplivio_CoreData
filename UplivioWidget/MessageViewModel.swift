@@ -40,16 +40,12 @@ class MessageViewModel {
         // Mesaj türüne göre mesajı seçme
         switch messageType {
         case "motivationalMessages":
-//            return messageData.motivationalMessages[messageIndex]
             return messageData.motivationalMessages[dayOfYear % messageData.motivationalMessages.count]
         case "inspiringQuotes":
-//            return messageData.inspiringQuotes[messageIndex]
             return messageData.inspiringQuotes[dayOfYear % messageData.inspiringQuotes.count]
         case "positiveThoughts":
-//            return messageData.positiveThoughts[messageIndex]
             return messageData.positiveThoughts[dayOfYear % messageData.positiveThoughts.count]
         case "mindfulnessMessages":
-//            return messageData.mindfulnessMessages[messageIndex]
             return messageData.mindfulnessMessages[dayOfYear % messageData.mindfulnessMessages.count]
         default:
             return "No message available"

@@ -15,7 +15,7 @@ struct Provider: AppIntentTimelineProvider {
 
     // Timeline: Widget'teki verinin zaman çizelgesini oluşturur. Bu, widget'in verilerinin ne sıklıkla güncelleneceğini belirler.
     func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
-        var entries: [SimpleEntry] = []
+        var _: [SimpleEntry] = []
 
         // ONEMLI
         let currentLanguage = Locale.preferredLanguages.first?.prefix(2) == "tr" ? "tr" : "en"
@@ -62,14 +62,11 @@ struct UplivioWidgetEntryView: View {
                     Color(colors.color2)
                 ]), startPoint: .topTrailing, endPoint: .bottomLeading)
                 .aspectRatio(contentMode: .fill)
-//                .frame(width: geo.size.width, height: geo.size.height) // Make the gradient fill the widget
                 // ios 17
                 .containerRelativeFrame(
                             [.horizontal, .vertical],
                             alignment: .topLeading
                         )
-                
-                
                 
                 .ignoresSafeArea() // Ignore safe areas
 
@@ -101,7 +98,7 @@ struct UplivioWidget: Widget {
 }
 
 // SwiftUI preview, widget'in nasıl görüneceğini önceden görmek için kullanılır.
-#Preview(as: .systemSmall) {
+#Preview(as: .systemMedium) {
     UplivioWidget()
 } timeline: {
     SimpleEntry(date: .now, message: "Believe in yourself! Believe in yourself! Believe in yourself!")

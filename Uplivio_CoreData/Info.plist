@@ -19,5 +19,10 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIImageName</key>
+		<string>LaunchScreen.swift</string>
+	</dict>
 </dict>
 </plist>
