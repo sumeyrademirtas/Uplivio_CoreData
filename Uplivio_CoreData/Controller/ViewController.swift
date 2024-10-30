@@ -91,6 +91,10 @@ class ViewController: UIViewController {
 
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
 }
 
 #if DEBUG

@@ -93,4 +93,8 @@ class LaunchScreenViewController: UIViewController {
             })
         }
     }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
 }
