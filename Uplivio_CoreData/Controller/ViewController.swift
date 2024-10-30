@@ -13,84 +13,39 @@ class ViewController: UIViewController {
 
     // ViewModel'den veri çeken property
     let viewModel = MessageViewModel()
+    let messageView = MessageView()
 
-    // Motivational message label
-    let messageLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Loading motivational message..."
-        label.textAlignment = .center
-        label.textColor = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1.0)
-        label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 30, weight: .medium)
-        return label
-    }()
 
     // MARK: Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        view = messageView
 
         // Kullanıcının dil tercihine göre JSON verisini ViewModel'e yükle
         let currentLanguage = Locale.preferredLanguages.first?.prefix(2) == "tr" ? "tr" : "en"
         viewModel.loadMessages(for: currentLanguage)
 
         // Güne göre mesajı ekranda göster
-        messageLabel.text = viewModel.getMessageForToday()
-        messageLabel.alpha = 0.0
+        messageView.messageLabel.text = viewModel.getMessageForToday()
+        messageView.messageLabel.alpha = 0.0
+        
+        updateMessageLabel()
     }
 
     // Animasyonu viewDidAppear'da başlatıyoruz
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        fadeInText() // Animasyon burada başlıyor
+        messageView.fadeInText()
     }
 
     // MARK: - Functions
 
-    func fadeInText() {
-        // UIView animasyonu ile opacity'yi değiştiriyoruz
-        UIView.animate(withDuration: 3.0, // animasyon süresi (2 saniye)
-                       delay: 0.0, // animasyon başlamadan önceki bekleme süresi
-                       options: .curveEaseIn, // animasyon eğrisi
-                       animations: {
-                           self.messageLabel.alpha = 1.0 // Opaklığı 1.0'a (tamamen görünür) getiriyoruz
-                       }, completion: nil)
+    private func updateMessageLabel() {
+        messageView.messageLabel.text = viewModel.getMessageForToday()
     }
+ 
 
-    // UI'yi ayarlayan fonksiyon
-    func setupUI() {
-        // Arka plan rengini gradient ile ayarla
-        setGradientBackground()
-
-        // Mesaj Label'ı ekle
-        view.addSubview(messageLabel)
-
-        NSLayoutConstraint.activate([
-            messageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            messageLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            messageLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            messageLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
-        ])
-    }
-
-    func setGradientBackground() {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = view.bounds
-
-        let colors = BackgroundColors.randomTwoColors()
-        let color1 = colors.color1
-        let color2 = colors.color2
-
-        gradientLayer.colors = [color1.cgColor, UIColor.white.withAlphaComponent(1).cgColor,
-                                color2.cgColor]
-
-        gradientLayer.startPoint = CGPoint(x: 1, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
-
-        view.layer.insertSublayer(gradientLayer, at: 0)
-    }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
