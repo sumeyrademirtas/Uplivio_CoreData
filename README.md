@@ -22,7 +22,7 @@ Uplivio is an iOS application that helps users view daily messages from four dif
 ## Overview
 
 - Programming Language: Swift
-- UI Framework: UIKit (programmatically created UI)
+- UI Framework: UIKit (programmatically created UI), SwiftUI (for widgets), and WidgetKit (for widget functionality)
 - Architecture: MVVM (Model-View-ViewModel) pattern
 - Responsive Design: Auto layout for compatibility across different iPhone devices.
 - Developed with: Xcode 16.0
